@@ -1,0 +1,24 @@
+
+svg {
+    width: auto;
+    height: 200px;
+    transform: translate(-50%, 0);
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    
+    text {
+        transform: translateX(10px);
+    }
+
+    tspan {
+        fill: #000000;
+    }
+} 
+
+
+:host-context( .dark ) {
+	svg tspan {
+        fill: #ffffff;
+    }
+}

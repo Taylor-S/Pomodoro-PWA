@@ -1,2 +1,2 @@
 # Pomodoro-PWA
-Built using IOnic + Angular
+Built using Ionic + Angular
