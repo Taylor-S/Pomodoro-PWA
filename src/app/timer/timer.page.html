@@ -1,20 +1,54 @@
-<ion-content>
-
-  <svg width="331.11mm" height="331.11mm" version="1.1" viewBox="0 0 331.11 331.11" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-     <filter id="filter1264" color-interpolation-filters="sRGB">
-      <feFlood flood-color="rgb(0,255,0)" result="flood"/>
-      <feComposite in="flood" in2="SourceGraphic" operator="in" result="composite1"/>
-      <feGaussianBlur in="composite1" result="blur" stdDeviation="8"/>
-      <feOffset dx="0" dy="0" result="offset"/>
-      <feComposite in="SourceGraphic" in2="offset" result="composite2"/>
-     </filter>
-    </defs>
-    <g fill="none">
-     <circle cx="165.56" cy="165.55" r="137.96" filter="url(#filter1264)" stroke="#0f0" stroke-width="25"/>
-     <text x="80.228745" y="214.04643" font-family="sans-serif" font-size="133.4px" stroke-width="3.3349" style="line-height:1.25" xml:space="preserve"><tspan x="80.228745" y="214.04643" fill="none" stroke-width="3.3349">25</tspan></text>
-    </g>
-   </svg>
-   
-
+<ion-content class="timer-content">
+   <ion-grid>  
+    <ion-row>
+      <ion-col size="12" class="flex center clock">
+        <h1>Working</h1>
+        <svg width="331.11mm" height="331.11mm" version="1.1" viewBox="0 0 331.11 331.11" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+           <filter id="filter1264" color-interpolation-filters="sRGB">
+            <feFlood flood-color="rgb(0,255,0)" result="flood"/>
+            <feComposite in="flood" in2="SourceGraphic" operator="in" result="composite1"/>
+            <feGaussianBlur in="composite1" result="blur" stdDeviation="8"/>
+            <feOffset dx="0" dy="0" result="offset"/>
+            <feComposite in="SourceGraphic" in2="offset" result="composite2"/>
+           </filter>
+          </defs>
+          <g fill="none">
+           <circle cx="165.56" cy="165.55" r="137.96" filter="url(#filter1264)" stroke="#0f0" stroke-width="25"/>
+            <g class="text-group">
+              <text x="80.228745" y="214.04643" font-family="sans-serif" font-size="133.4px" stroke-width="3.3349" style="line-height:1.25" xml:space="preserve">
+                  <tspan x="80.228745" y="214.04643" fill="none" stroke-width="3.3349">{{ workTime }}</tspan>
+              </text>
+              <text x="80.228745" y="214.04643" font-family="sans-serif" font-size="40px" stroke-width="3.3349" style="line-height:1.25" xml:space="preserve">
+                <tspan x="80.228745" y="260" fill="none" stroke-width="3.3349">minutes</tspan>
+              </text>
+            </g>
+          </g>
+         </svg>
+      </ion-col>
+      <ion-col size="12" class="flex center">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Short Break Time</ion-card-title>
+            <ion-card-subtitle>{{ shortBreakTime }} minutes</ion-card-subtitle>
+          </ion-card-header>
+        </ion-card>
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Long Break Time</ion-card-title>
+            <ion-card-subtitle>{{ longBreakTime }} minutes</ion-card-subtitle>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+      <ion-col size="12" class="flex center">
+        <ion-icon name="checkbox"></ion-icon>
+        <ion-icon name="checkbox"></ion-icon>
+        <ion-icon name="checkbox"></ion-icon>
+        <ion-icon name="checkbox"></ion-icon>
+      </ion-col>
+      <ion-col size="12" class="flex center">
+        <ion-button color="primary" size="large">Start</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

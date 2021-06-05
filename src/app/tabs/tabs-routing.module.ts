@@ -21,14 +21,14 @@ const routes: Routes = [
       },
       {
         path: '',
-        redirectTo: '/settings',
+        redirectTo: '/timer',
         pathMatch: 'full'
       }
     ]
   },
   {
     path: '',
-    redirectTo: '/settings',
+    redirectTo: '/timer',
     pathMatch: 'full'
   }
 ];

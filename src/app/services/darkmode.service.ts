@@ -10,10 +10,8 @@ export class DarkModeService {
 
   async updateDarkModeIfEnabled() {
     const darkModeEnabled = await this.checkDarkModeEnabled();
-    console.log(darkModeEnabled);
     if(darkModeEnabled) {
-      document.body.classList.toggle('dark', true);
-      console.log(document.body.classList);
+      document.body.classList.toggle('dark', darkModeEnabled);
     }
   }
 

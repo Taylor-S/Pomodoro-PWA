@@ -1,14 +1,17 @@
 
+
+h1, h4 {
+    width: 100%;
+    text-align: center;
+}
+
 svg {
     width: auto;
     height: 200px;
-    transform: translate(-50%, 0);
-    position: absolute;
-    top: 10%;
-    left: 50%;
-    
-    text {
-        transform: translateX(10px);
+    align-self: center;
+
+    .text-group {
+        transform: translate(12px, -20px);
     }
 
     tspan {
@@ -16,6 +19,14 @@ svg {
     }
 } 
 
+ion-card {
+    width: 40%;
+}
+
+ion-icon[name=checkbox] {
+    color: rgb(0, 255, 0);
+    font-size: 5em;
+}
 
 :host-context( .dark ) {
 	svg tspan {
