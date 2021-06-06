@@ -2,8 +2,8 @@ import { Component, ComponentFactoryResolver, OnInit } from '@angular/core';
 
 
 const settings = {
-  workTime: 0.05,
-  shortBreakTime: 0.05,
+  focusTime: 0.5,
+  shortBreakTime: 0.5,
   longBreakTime: 0.5
 };
 
@@ -16,11 +16,11 @@ const settings = {
 })
 export class TimerPage implements OnInit {
   math = Math;
-  workTime;
+  focusTime;
   shortBreakTime;
   longBreakTime;
   timerRunning = false;
-  state = 'Working';
+  state = 'Focus Time';
   checkMarks = 0;
   shortBreakSound: HTMLAudioElement;
   longBreakSound: HTMLAudioElement;
@@ -51,14 +51,14 @@ export class TimerPage implements OnInit {
     this.timerRunning = false;
     this.checkMarks = 0;
     this.setTimes();
-    this.state = 'Working';
+    this.state = 'Focus Time';
   }
 
   runTimer() {
     const timer = setInterval(() => {
-      this.state === 'Working' 
-        ? this.workTime -- 
-        : this.state === 'Short Break' 
+      this.state === 'Focus Time'
+        ? this.focusTime --
+        : this.state === 'Short Break'
           ? this.shortBreakTime --
           : this.longBreakTime --;
 
@@ -66,7 +66,7 @@ export class TimerPage implements OnInit {
         clearInterval(timer);
       }
 
-      if(this.workTime <= 0 || this.shortBreakTime <= 0 || this.longBreakTime <= 0) {
+      if(this.focusTime <= 0 || this.shortBreakTime <= 0 || this.longBreakTime <= 0) {
         this.setTimes();
         this.changeState();
       }
@@ -74,13 +74,13 @@ export class TimerPage implements OnInit {
   }
 
   private setTimes() {
-    this.workTime = settings.workTime * 60;
+    this.focusTime = settings.focusTime * 60;
     this.shortBreakTime = settings.shortBreakTime * 60;
     this.longBreakTime = settings.longBreakTime * 60;
   }
 
   private changeState() {
-    if(this.state === 'Working') {
+    if(this.state === 'Focus Time') {
       this.checkMarks ++;
 
       if(this.checkMarks >= 4) {
@@ -93,12 +93,12 @@ export class TimerPage implements OnInit {
       }
     }
     else if (this.state === 'Short Break') {
-      this.state = 'Working';
+      this.state = 'Focus Time';
       this.soundAlarm();
     }
     else {
       this.timerRunning = false;
-      this.state = 'Working';
+      this.state = 'Focus Time';
       this.soundAlarm();
       this.checkMarks = 0;
     }

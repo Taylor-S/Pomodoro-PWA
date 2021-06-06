@@ -16,7 +16,7 @@ export class DarkModeService {
   }
 
   async checkDarkModeEnabled(): Promise<boolean> {
-    const enabled =  this.storageService.get('darkModeToggled');
-    return enabled;
+    const enabled = await this.storageService.get('darkModeToggled');
+    return enabled != null ? enabled : false;
   }
 }

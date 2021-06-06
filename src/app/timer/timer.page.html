@@ -1,5 +1,5 @@
 <ion-content class="timer-content">
-   <ion-grid>  
+   <ion-grid>
     <ion-row>
       <ion-col size="12" class="flex center">
         <h1>{{ started === false ? '---' : timerRunning === true ? state : 'Paused' }}</h1>
@@ -18,35 +18,45 @@
            </svg>
 
            <div class="time-data">
-              <span class="time">{{ math.ceil(workTime / 60) }}</span>
+              <span class="time">{{ math.ceil(focusTime / 60) }}</span>
               <span>minutes</span>
            </div>
+           <div class="controls">
+            <ion-icon color="primary" (click)="start()" *ngIf="!timerRunning" name="play-circle"></ion-icon>
+            <ion-icon color="primary" (click)="pause()" *ngIf="timerRunning" name="pause-circle"></ion-icon>
+            <ion-icon color="primary" (click)="reset()" name="refresh-circle"></ion-icon>
+           </div>
         </div>
-      </ion-col>
-      <ion-col size="12" class="flex center">
-        <ion-card>
-          <ion-card-header>
-            <ion-card-title>Short Break Time</ion-card-title>
-            <ion-card-subtitle>{{ math.ceil(shortBreakTime / 60) }} minutes</ion-card-subtitle>
-          </ion-card-header>
-        </ion-card>
-        <ion-card>
-          <ion-card-header>
-            <ion-card-title>Long Break Time</ion-card-title>
-            <ion-card-subtitle>{{ math.ceil(longBreakTime / 60) }} minutes</ion-card-subtitle>
-          </ion-card-header>
-        </ion-card>
       </ion-col>
       <ion-col size="12" class="flex center">
         <ion-icon name="checkbox" [ngClass]="{'complete': checkMarks >= 1}"></ion-icon>
         <ion-icon name="checkbox" [ngClass]="{'complete': checkMarks >= 2}"></ion-icon>
         <ion-icon name="checkbox" [ngClass]="{'complete': checkMarks >= 3}"></ion-icon>
         <ion-icon name="checkbox" [ngClass]="{'complete': checkMarks >= 4}"></ion-icon>
+        </ion-col>
+      <ion-col size="12">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Focus Time</ion-card-title>
+            <ion-card-subtitle>{{ math.ceil(focusTime / 60) }} minutes</ion-card-subtitle>
+          </ion-card-header>
+        </ion-card>
       </ion-col>
-      <ion-col size="12" class="flex center">
-        <ion-button color="primary" size="large" (click)="start()" *ngIf="!timerRunning">Start</ion-button>
-        <ion-button color="primary" size="large" (click)="pause()" *ngIf="timerRunning">Pause</ion-button>
-        <ion-button color="primary" fill="outline" size="large" (click)="reset()">Reset</ion-button>
+      <ion-col size="6">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Short Break</ion-card-title>
+            <ion-card-subtitle>{{ math.ceil(shortBreakTime / 60) }} minutes</ion-card-subtitle>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+      <ion-col size="6">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Long Break</ion-card-title>
+            <ion-card-subtitle>{{ math.ceil(longBreakTime / 60) }} minutes</ion-card-subtitle>
+          </ion-card-header>
+        </ion-card>
       </ion-col>
     </ion-row>
   </ion-grid>

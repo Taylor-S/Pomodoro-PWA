@@ -7,6 +7,7 @@ h1, h4 {
 
 .clock {
     position: relative;
+    margin-bottom: 50px;
 
     .time-data {
         position: absolute;
@@ -29,22 +30,40 @@ svg {
     width: auto;
     height: 200px;
     align-self: center;
-} 
+}
+
+ion-icon[name=play-circle], ion-icon[name=pause-circle], ion-icon[name=refresh-circle] {
+  font-size: 4em;
+  cursor: pointer
+}
+
+.controls {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  bottom: -40px;
+}
 
 ion-card {
-    width: 40%;
+  text-align: center;
 }
 
 ion-icon[name=checkbox] {
-    font-size: 5em;
+  font-size: 3em;
+  color: #d3d3d3;
 
-    &.complete {
-        color: rgb(0, 255, 0);
-    }
+  &.complete {
+      color: rgb(0, 255, 0);
+  }
 }
 
 :host-context( .dark ) {
 	svg tspan {
-        fill: #ffffff;
-    }
+      fill: #ffffff;
+  }
+
+  ion-icon[name=checkbox] {
+    color: #3f3f3f;
+  }
 }
