@@ -13,6 +13,33 @@
       </ion-label>
       <ion-toggle id="themeToggle" slot="end" (ionChange)="toggleDarkMode($event)" checked={{darkModeToggled}}></ion-toggle>
     </ion-item>
+    <ion-item>
+      <ion-icon slot="start" name="hourglass"></ion-icon>
+      <ion-label class="ion-text-wrap">
+        Focus Duration
+      </ion-label>
+      <ion-range min="1" max="60" color="primary" [(ngModel)]="focusDuration" (ionChange)="saveDuration(durationType.focus, focusDuration)">
+        <ion-label slot="end">{{ focusDuration }}</ion-label>
+      </ion-range>
+    </ion-item>
+    <ion-item>
+      <ion-icon slot="start" name="hourglass"></ion-icon>
+      <ion-label class="ion-text-wrap">
+        Short Break Duration
+      </ion-label>
+      <ion-range min="1" max="60" color="primary" [(ngModel)]="shortDuration" (ionChange)="saveDuration(durationType.short, shortDuration)">
+        <ion-label slot="end">{{ shortDuration }}</ion-label>
+      </ion-range>
+    </ion-item>
+    <ion-item>
+      <ion-icon slot="start" name="hourglass"></ion-icon>
+      <ion-label class="ion-text-wrap">
+        Long Break Duration
+      </ion-label>
+      <ion-range min="1" max="60" color="primary" [(ngModel)]="longDuration" (ionChange)="saveDuration(durationType.long, longDuration)">
+        <ion-label slot="end">{{ longDuration }}</ion-label>
+      </ion-range>
+    </ion-item>
   </ion-list>
 
 </ion-content>
