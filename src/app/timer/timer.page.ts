@@ -2,9 +2,9 @@ import { Component, ComponentFactoryResolver, OnInit } from '@angular/core';
 
 
 const settings = {
-  workTime: 0.1,
-  shortBreakTime: 0.1,
-  longBreakTime: 0.1
+  workTime: 0.05,
+  shortBreakTime: 0.05,
+  longBreakTime: 0.5
 };
 
 
@@ -22,18 +22,22 @@ export class TimerPage implements OnInit {
   timerRunning = false;
   state = 'Working';
   checkMarks = 0;
-  breakSound: HTMLAudioElement;
+  shortBreakSound: HTMLAudioElement;
+  longBreakSound: HTMLAudioElement;
   workSound: HTMLAudioElement;
+  started = false;
 
   constructor() { }
 
   ngOnInit() {
     this.setTimes();
-    this.breakSound = new Audio('./assets/sounds/ding-dong.wav');
+    this.shortBreakSound = new Audio('./assets/sounds/ding-dong.wav');
+    this.longBreakSound = new Audio('./assets/sounds/longbreak.wav');
     this.workSound = new Audio('./assets/sounds/uplifting-flute.wav');
   }
 
   start() {
+    this.started = true;
     this.timerRunning = true;
     this.runTimer();
   }
@@ -43,6 +47,7 @@ export class TimerPage implements OnInit {
   }
 
   reset() {
+    this.started = false;
     this.timerRunning = false;
     this.checkMarks = 0;
     this.setTimes();
@@ -101,18 +106,10 @@ export class TimerPage implements OnInit {
 
   private soundAlarm() {
     if (this.state === 'Short Break') {
-      this.breakSound.play();
+      this.shortBreakSound.play();
     }
     else if (this.state === 'Long Break') {
-      let interval = 0;
-      this.breakSound.loop = true;
-      const alarm = setInterval(() => {
-        if (interval >= 3) {
-          clearInterval(alarm);
-          this.breakSound.loop = false;
-        }
-        interval ++;
-      }, 5000);
+      this.longBreakSound.play();
     }
     else {
       this.workSound.play();
