@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { StorageService } from '../services/storage.service';
 import { DurationType, SettingsService } from '../services/settings.service';
 
 @Component({
@@ -10,7 +9,7 @@ import { DurationType, SettingsService } from '../services/settings.service';
 export class SettingsPage implements OnInit {
   darkModeToggled = false;
 
-  constructor(private storageService: StorageService, public settingsService: SettingsService) { }
+  constructor(public settingsService: SettingsService) { }
 
   async ngOnInit() {
     this.darkModeToggled = await this.settingsService.checkDarkModeEnabled();
