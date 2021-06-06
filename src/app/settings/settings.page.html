@@ -18,8 +18,8 @@
       <ion-label class="ion-text-wrap">
         Focus Duration
       </ion-label>
-      <ion-range min="1" max="60" color="primary" [(ngModel)]="focusDuration" (ionChange)="saveDuration(durationType.focus, focusDuration)">
-        <ion-label slot="end">{{ focusDuration }}</ion-label>
+      <ion-range min="1" max="60" color="primary" [(ngModel)]="settingsService.focusDuration" (ionChange)="updateDuration(settingsService.durationType.focus)">
+        <ion-label slot="end">{{ settingsService.focusDuration }}</ion-label>
       </ion-range>
     </ion-item>
     <ion-item>
@@ -27,8 +27,8 @@
       <ion-label class="ion-text-wrap">
         Short Break Duration
       </ion-label>
-      <ion-range min="1" max="60" color="primary" [(ngModel)]="shortDuration" (ionChange)="saveDuration(durationType.short, shortDuration)">
-        <ion-label slot="end">{{ shortDuration }}</ion-label>
+      <ion-range min="1" max="60" color="primary" [(ngModel)]="settingsService.shortDuration" (ionChange)="updateDuration(settingsService.durationType.short)">
+        <ion-label slot="end">{{ settingsService.shortDuration }}</ion-label>
       </ion-range>
     </ion-item>
     <ion-item>
@@ -36,8 +36,8 @@
       <ion-label class="ion-text-wrap">
         Long Break Duration
       </ion-label>
-      <ion-range min="1" max="60" color="primary" [(ngModel)]="longDuration" (ionChange)="saveDuration(durationType.long, longDuration)">
-        <ion-label slot="end">{{ longDuration }}</ion-label>
+      <ion-range min="1" max="60" color="primary" [(ngModel)]="settingsService.longDuration" (ionChange)="updateDuration(settingsService.durationType.long)">
+        <ion-label slot="end">{{ settingsService.longDuration }}</ion-label>
       </ion-range>
     </ion-item>
   </ion-list>

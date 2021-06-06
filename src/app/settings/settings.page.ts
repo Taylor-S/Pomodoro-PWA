@@ -1,12 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { StorageService } from '../services/storage.service';
-import { DarkModeService } from '../services/darkmode.service';
-
-export enum DurationType {
-  focus = 'focusDuration',
-  short = 'shortDuration',
-  long = 'longDuration'
-}
+import { DurationType, SettingsService } from '../services/settings.service';
 
 @Component({
   selector: 'app-settings',
@@ -15,38 +9,20 @@ export enum DurationType {
 })
 export class SettingsPage implements OnInit {
   darkModeToggled = false;
-  focusDuration = 25;
-  shortDuration = 5;
-  longDuration = 15;
-  durationType = DurationType;
 
-  constructor(private storageService: StorageService, private darkModeService: DarkModeService) { }
+  constructor(private storageService: StorageService, public settingsService: SettingsService) { }
 
   async ngOnInit() {
-    this.darkModeToggled = await this.darkModeService.checkDarkModeEnabled();
-    this.loadDurationSettings();
+    this.darkModeToggled = await this.settingsService.checkDarkModeEnabled();
   }
 
 
-  async toggleDarkMode(ev) {
-    document.body.classList.toggle('dark', ev.detail.checked);
-    await this.storageService.set('darkModeToggled', ev.detail.checked);
+  toggleDarkMode(ev) {
+    this.settingsService.toggleDarkMode(ev);
   }
 
-  async saveDuration(durationType: DurationType, duration: number) {
-    await this.storageService.set(durationType, duration);
-  }
-
-  async loadDurationSettings() {
-    const focus = await this.storageService.get(this.durationType.focus);
-    this.focusDuration = isNaN(focus) ? 25 : focus;
-
-    const short = await this.storageService.get(this.durationType.short);
-    this.shortDuration = isNaN(short) ? 5 : short;
-
-    const long = await this.storageService.get(this.durationType.long);
-    this.longDuration = isNaN(long) ? 15 : long;
-
+  updateDuration(durationType: DurationType) {
+    this.settingsService.saveDuration(durationType);
   }
 
 }
