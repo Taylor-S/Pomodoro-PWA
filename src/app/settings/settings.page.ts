@@ -17,7 +17,7 @@ export class SettingsPage implements OnInit {
   }
 
 
-  async toggleDarkMode(ev: CustomEvent) {
+  async toggleDarkMode(ev) {
     document.body.classList.toggle('dark', ev.detail.checked);
     await this.storageService.set('darkModeToggled', ev.detail.checked);
   }
