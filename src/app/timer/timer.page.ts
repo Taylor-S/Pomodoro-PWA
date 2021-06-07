@@ -68,11 +68,18 @@ export class TimerPage implements OnInit {
   runTimer() {
     const timer = setInterval(() => {
       this.seconds ++;
-      this.state === 'Focus Time'
-        ? this.focusTime --
-        : this.state === 'Short Break'
-          ? this.shortBreakTime --
-          : this.longBreakTime --;
+
+      switch (this.state)
+      {
+        case 'Focus Time':
+          this.focusTime --;
+          break;
+        case 'Short Break':
+          this.shortBreakTime --;
+          break;
+        default:
+          this.longBreakTime --;
+      }
 
       if(!this.timerRunning) {
         clearInterval(timer);

@@ -1,0 +1,27 @@
+{
+  "name": "TASCH Pomodoro Timer",
+  "short_name": "TASCH Pomodoro",
+  "theme_color": "#76DCFF",
+  "background_color": "#FFFFFF",
+  "display": "standalone",
+  "orientation":"portrait",
+  "scope": "./",
+  "start_url": "./",
+  "icons": [
+    {
+      "src": "assets/icons/faviconx72.svg",
+      "sizes": "72x72",
+      "type": "image/svg"
+    },
+    {
+      "src": "assets/icons/faviconx192.svg",
+      "sizes": "192x192",
+      "type": "image/svg"
+    },
+    {
+      "src": "assets/icons/faviconx512.svg",
+      "sizes": "512x512",
+      "type": "image/svg"
+    }
+  ]
+}
