@@ -1,4 +1,5 @@
 import { Component, ComponentFactoryResolver, OnInit } from '@angular/core';
+import { SettingsService } from '../services/settings.service';
 
 
 const settings = {
@@ -26,14 +27,23 @@ export class TimerPage implements OnInit {
   longBreakSound: HTMLAudioElement;
   workSound: HTMLAudioElement;
   started = false;
+  loadedDurations = false;
 
-  constructor() { }
+  constructor(private settingsService: SettingsService) { }
 
-  ngOnInit() {
-    this.setTimes();
+  async ngOnInit() {
+    await this.setTimes();
+    this.loadedDurations = true;
     this.shortBreakSound = new Audio('./assets/sounds/ding-dong.wav');
     this.longBreakSound = new Audio('./assets/sounds/longbreak.wav');
     this.workSound = new Audio('./assets/sounds/uplifting-flute.wav');
+  }
+
+  ionViewWillEnter() {
+    if(!this.started)
+    {
+      this.setTimes();
+    }
   }
 
   start() {
@@ -73,10 +83,11 @@ export class TimerPage implements OnInit {
     }, 1000);
   }
 
-  private setTimes() {
-    this.focusTime = settings.focusTime * 60;
-    this.shortBreakTime = settings.shortBreakTime * 60;
-    this.longBreakTime = settings.longBreakTime * 60;
+  private async setTimes() {
+    await this.settingsService.loadDurationSettings();
+    this.focusTime = this.settingsService.focusDuration * 60;
+    this.shortBreakTime = this.settingsService.shortDuration * 60;
+    this.longBreakTime = this.settingsService.longDuration * 60;
   }
 
   private changeState() {

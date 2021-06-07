@@ -1,5 +1,5 @@
 <ion-content class="timer-content">
-   <ion-grid>
+   <ion-grid [hidden]="!loadedDurations">
     <ion-row>
       <ion-col size="12" class="flex center">
         <h1>{{ started === false ? '---' : timerRunning === true ? state : 'Paused' }}</h1>

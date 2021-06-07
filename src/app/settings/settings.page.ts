@@ -13,6 +13,7 @@ export class SettingsPage implements OnInit {
 
   async ngOnInit() {
     this.darkModeToggled = await this.settingsService.checkDarkModeEnabled();
+    await this.settingsService.loadDurationSettings();
   }
 
 

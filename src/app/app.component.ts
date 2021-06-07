@@ -11,7 +11,6 @@ export class AppComponent {
   constructor(private settingsService: SettingsService, private platform: Platform) {
     this.platform.ready().then(() => {
       this.settingsService.updateDarkModeIfEnabled();
-      this.settingsService.loadDurationSettings();
     });
   }
 }
