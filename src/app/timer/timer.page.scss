@@ -30,6 +30,7 @@ svg {
     width: auto;
     height: 200px;
     align-self: center;
+    transform: rotate(270deg);
 }
 
 ion-icon[name=play-circle], ion-icon[name=pause-circle], ion-icon[name=refresh-circle] {

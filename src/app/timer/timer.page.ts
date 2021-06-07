@@ -20,6 +20,7 @@ export class TimerPage implements OnInit {
   focusTime;
   shortBreakTime;
   longBreakTime;
+  seconds = 0;
   timerRunning = false;
   state = 'Focus Time';
   checkMarks = 0;
@@ -66,6 +67,7 @@ export class TimerPage implements OnInit {
 
   runTimer() {
     const timer = setInterval(() => {
+      this.seconds ++;
       this.state === 'Focus Time'
         ? this.focusTime --
         : this.state === 'Short Break'
@@ -79,6 +81,7 @@ export class TimerPage implements OnInit {
       if(this.focusTime <= 0 || this.shortBreakTime <= 0 || this.longBreakTime <= 0) {
         this.setTimes();
         this.changeState();
+        this.seconds = 0;
       }
     }, 1000);
   }
