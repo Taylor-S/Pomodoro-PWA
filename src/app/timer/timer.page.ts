@@ -61,6 +61,7 @@ export class TimerPage implements OnInit {
     this.started = false;
     this.timerRunning = false;
     this.checkMarks = 0;
+    this.seconds = 0;
     this.setTimes();
     this.state = 'Focus Time';
   }

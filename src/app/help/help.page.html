@@ -5,5 +5,29 @@
 </ion-header>
 
 <ion-content>
+  <div class="content">
+    <ion-list>
+      <ion-item button (click)="getInfo()">
+        <ion-label>
+          What is the Pomodoro technique?
+        </ion-label>
+      </ion-item>
+      <ion-item button (click)="getInfo()">
+        <ion-label>
+          What makes the Pomodoro technique so effective?
+        </ion-label>
+      </ion-item>
+      <ion-item button (click)="getInfo()">
+        <ion-label>
+          How to use the Pomodoro technique?
+        </ion-label>
+      </ion-item>
+    </ion-list>
 
+    <ion-card>
+      <ion-card-content>
+        This app was built by <a href="https://tasch.com.au" target="_blank">TASCH</a>
+      </ion-card-content>
+    </ion-card>
+  </div>
 </ion-content>

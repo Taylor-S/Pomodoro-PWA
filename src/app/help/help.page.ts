@@ -12,4 +12,8 @@ export class HelpPage implements OnInit {
   ngOnInit() {
   }
 
+  getInfo() {
+    alert('Get Info!');
+  }
+
 }
