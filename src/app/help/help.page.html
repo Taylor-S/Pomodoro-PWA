@@ -7,19 +7,9 @@
 <ion-content>
   <div class="content">
     <ion-list>
-      <ion-item button (click)="getInfo()">
+      <ion-item button *ngFor="let helpItem of helpItems; index as i" (click)="presentModal(i)">
         <ion-label>
-          What is the Pomodoro technique?
-        </ion-label>
-      </ion-item>
-      <ion-item button (click)="getInfo()">
-        <ion-label>
-          What makes the Pomodoro technique so effective?
-        </ion-label>
-      </ion-item>
-      <ion-item button (click)="getInfo()">
-        <ion-label>
-          How to use the Pomodoro technique?
+          {{ helpItem }}
         </ion-label>
       </ion-item>
     </ion-list>

@@ -1,6 +1,12 @@
 import { Component, ComponentFactoryResolver, OnInit } from '@angular/core';
 import { SettingsService } from '../services/settings.service';
 
+enum State {
+  focus = 'Focus Time',
+  short = 'Short Break',
+  long = 'Long Break'
+}
+
 @Component({
   selector: 'app-timer',
   templateUrl: './timer.page.html',
@@ -14,7 +20,7 @@ export class TimerPage implements OnInit {
   seconds = 0;
   timerProgressChunk: number;
   timerRunning = false;
-  state = 'Focus Time';
+  state = State.focus;
   checkMarks = 0;
   shortBreakSound: HTMLAudioElement;
   longBreakSound: HTMLAudioElement;
@@ -56,19 +62,17 @@ export class TimerPage implements OnInit {
     this.checkMarks = 0;
     this.seconds = 0;
     this.setTimes();
-    this.state = 'Focus Time';
+    this.state = State.focus;
   }
 
   runTimer() {
     const timer = setInterval(() => {
-      this.seconds ++;
-
       switch (this.state)
       {
-        case 'Focus Time':
+        case State.focus:
           this.focusTime --;
           break;
-        case 'Short Break':
+        case State.short:
           this.shortBreakTime --;
           break;
         default:
@@ -77,26 +81,30 @@ export class TimerPage implements OnInit {
 
       if(!this.timerRunning) {
         clearInterval(timer);
+        return;
       }
 
       if(this.focusTime <= 0 || this.shortBreakTime <= 0 || this.longBreakTime <= 0) {
         this.setTimes();
         this.changeState();
         this.seconds = 0;
+        return;
       }
+
+      this.seconds ++;
     }, 1000);
   }
 
   currentCountDownTime() {
-    return this.state === 'Focus Time' 
-      ? this.focusTime : this.state === 'Short Break' 
+    return this.state === State.focus 
+      ? this.focusTime : this.state === State.short 
         ? this.shortBreakTime : this.longBreakTime;
   }
 
   progressStyles() {
     return {
       'stroke-dashoffset': this.seconds * this.timerProgressChunk * -1,
-      'stroke': this.state === 'Focus Time' ? '#00FF00' : '#ff9500'
+      'stroke': this.state === State.focus ? '#00FF00' : '#ff9500'
     };
   }
 
@@ -108,25 +116,25 @@ export class TimerPage implements OnInit {
   }
 
   private changeState() {
-    if(this.state === 'Focus Time') {
+    if(this.state === State.focus) {
       this.checkMarks ++;
 
       if(this.checkMarks >= 4) {
-        this.state = 'Long Break';
+        this.state = State.long;
         this.soundAlarm();
       }
       else {
-        this.state = 'Short Break';
+        this.state = State.short;
         this.soundAlarm();
       }
     }
-    else if (this.state === 'Short Break') {
-      this.state = 'Focus Time';
+    else if (this.state === State.short) {
+      this.state = State.focus;
       this.soundAlarm();
     }
     else {
       this.timerRunning = false;
-      this.state = 'Focus Time';
+      this.state = State.focus;
       this.soundAlarm();
       this.checkMarks = 0;
     }
@@ -135,10 +143,10 @@ export class TimerPage implements OnInit {
   }
 
   private soundAlarm() {
-    if (this.state === 'Short Break') {
+    if (this.state === State.short) {
       this.shortBreakSound.play();
     }
-    else if (this.state === 'Long Break') {
+    else if (this.state === State.long) {
       this.longBreakSound.play();
     }
     else {
@@ -151,8 +159,8 @@ export class TimerPage implements OnInit {
   }
 
   private updateTimerProgressChunk() {
-    const currentTime = this.state === 'Focus Time' 
-      ? this.settingsService.focusDuration : this.state === 'Short Break' 
+    const currentTime = this.state === State.focus 
+      ? this.settingsService.focusDuration : this.state === State.short 
         ? this.settingsService.shortDuration : this.settingsService.longDuration;
 
     this.timerProgressChunk = 870 / this.convertToSeconds(currentTime);
