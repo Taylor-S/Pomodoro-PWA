@@ -1,15 +1,6 @@
 import { Component, ComponentFactoryResolver, OnInit } from '@angular/core';
 import { SettingsService } from '../services/settings.service';
 
-
-const settings = {
-  focusTime: 0.5,
-  shortBreakTime: 0.5,
-  longBreakTime: 0.5
-};
-
-
-
 @Component({
   selector: 'app-timer',
   templateUrl: './timer.page.html',
@@ -17,10 +8,11 @@ const settings = {
 })
 export class TimerPage implements OnInit {
   math = Math;
-  focusTime;
-  shortBreakTime;
-  longBreakTime;
+  focusTime: number;
+  shortBreakTime: number;
+  longBreakTime: number;
   seconds = 0;
+  timerProgressChunk: number;
   timerRunning = false;
   state = 'Focus Time';
   checkMarks = 0;
@@ -50,6 +42,7 @@ export class TimerPage implements OnInit {
   start() {
     this.started = true;
     this.timerRunning = true;
+    this.updateTimerProgressChunk();
     this.runTimer();
   }
 
@@ -94,11 +87,24 @@ export class TimerPage implements OnInit {
     }, 1000);
   }
 
+  currentCountDownTime() {
+    return this.state === 'Focus Time' 
+      ? this.focusTime : this.state === 'Short Break' 
+        ? this.shortBreakTime : this.longBreakTime;
+  }
+
+  progressStyles() {
+    return {
+      'stroke-dashoffset': this.seconds * this.timerProgressChunk * -1,
+      'stroke': this.state === 'Focus Time' ? '#00FF00' : '#ff9500'
+    };
+  }
+
   private async setTimes() {
     await this.settingsService.loadDurationSettings();
-    this.focusTime = this.settingsService.focusDuration * 60;
-    this.shortBreakTime = this.settingsService.shortDuration * 60;
-    this.longBreakTime = this.settingsService.longDuration * 60;
+    this.focusTime = this.convertToSeconds(this.settingsService.focusDuration);
+    this.shortBreakTime = this.convertToSeconds(this.settingsService.shortDuration);
+    this.longBreakTime = this.convertToSeconds(this.settingsService.longDuration);
   }
 
   private changeState() {
@@ -124,6 +130,8 @@ export class TimerPage implements OnInit {
       this.soundAlarm();
       this.checkMarks = 0;
     }
+
+    this.updateTimerProgressChunk();
   }
 
   private soundAlarm() {
@@ -136,6 +144,18 @@ export class TimerPage implements OnInit {
     else {
       this.workSound.play();
     }
+  }
+
+  private convertToSeconds(time: number) {
+    return time * 60;
+  }
+
+  private updateTimerProgressChunk() {
+    const currentTime = this.state === 'Focus Time' 
+      ? this.settingsService.focusDuration : this.state === 'Short Break' 
+        ? this.settingsService.shortDuration : this.settingsService.longDuration;
+
+    this.timerProgressChunk = 870 / this.convertToSeconds(currentTime);
   }
 
 }
