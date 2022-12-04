@@ -8,11 +8,15 @@
 </ion-header>
 
 <ion-content>
+  <div class="content heading">
+    <h1>{{ modalHeading }}</h1>
+  </div>
+  
   <div class="content" [hidden]="helpItem != 0">
     <p>
-      The Pomodoro Technique is a time management method developed by Francesco Cirillo in the late 1980s. 
-      The technique uses a timer to break down work into intervals, traditionally 25 minutes in length, 
-      separated by short breaks. Each interval is known as a pomodoro, from the Italian word for 'tomato', 
+      The Pomodoro Technique is a time management method developed by Francesco Cirillo in the late 1980s.
+      The technique uses a timer to break down work into intervals, traditionally 25 minutes in length,
+      separated by short breaks. Each interval is known as a pomodoro, from the Italian word for 'tomato',
       after the tomato-shaped kitchen timer that Cirillo used as a university student.
     </p>
   </div>
@@ -20,13 +24,13 @@
 
   <div class="content" [hidden]="helpItem != 1">
     <p>
-      The idea behind the technique is that the timer instills a sense of urgency. Rather than feeling like 
-      you have endless time in the workday to get things done and then ultimately squandering those precious 
+      The idea behind the technique is that the timer instills a sense of urgency. Rather than feeling like
+      you have endless time in the workday to get things done and then ultimately squandering those precious
       work hours on distractions, you know you only have 25 minutes to make as much progress on a task as possible.
     </p>
   </div>
 
-  
+
   <div class="content" [hidden]="helpItem != 2">
     <p>There are six steps in the technique:</p>
     <ol>
@@ -35,11 +39,11 @@
       <li>Work on the task.</li>
       <li>End work when the timer rings. A checkmark is then rewarded.</li>
       <li>
-        If you have fewer than four checkmarks, take a short break (3–5 minutes) and then return to 
+        If you have fewer than four checkmarks, take a short break (3–5 minutes) and then return to
         step 2; otherwise continue to step 6.
       </li>
       <li>
-        After four pomodoros, take a longer break (15–30 minutes), reset your checkmark count to zero, 
+        After four pomodoros, take a longer break (15–30 minutes), reset your checkmark count to zero,
         then go to step 1.
       </li>
     </ol>
@@ -47,59 +51,59 @@
     <p>For the purposes of the technique, a pomodoro is the interval of time spent working.</p>
 
     <p>
-      Regular breaks are taken, aiding assimilation. A short (3–5 minutes) rest separates consecutive 
+      Regular breaks are taken, aiding assimilation. A short (3–5 minutes) rest separates consecutive
       pomodoros. Four pomodoros form a set. A longer (15–30 minute) rest is taken between sets.
     </p>
-  
+
     <p>
-      A goal of the technique is to reduce the impact of internal and external interruptions on focus 
-      and flow. A pomodoro is indivisible; when interrupted during a pomodoro, either the other activity 
+      A goal of the technique is to reduce the impact of internal and external interruptions on focus
+      and flow. A pomodoro is indivisible; when interrupted during a pomodoro, either the other activity
       must be recorded and postponed or the pomodoro must be abandoned.
     </p>
-  
+
     <p>After task completion in a pomodoro, any time remaining could be devoted to activities such as:</p>
     <ol>
       <li>Review and edit the work just completed.</li>
       <li>
-        Review the activities from a learning point of view: What did I learn? What could I do better 
+        Review the activities from a learning point of view: What did I learn? What could I do better
         or differently?
       </li>
       <li>
-        Review the list of upcoming tasks for the next planned Pomodoro time blocks, and start reflecting 
+        Review the list of upcoming tasks for the next planned Pomodoro time blocks, and start reflecting
         on or updating those tasks.
       </li>
     </ol>
-  
+
     <p>Cirillo suggests:</p>
     <blockquote>
-      Specific cases should be handled with common sense: If you finish a task while the Pomodoro is still 
-      ticking, the following rule applies: If a Pomodoro begins, it has to ring. It’s a good idea to take 
-      advantage of the opportunity for overlearning, using the remaining portion of the Pomodoro to review 
-      or repeat what you’ve done, make small improvements, and note what you’ve learned until the Pomodoro 
+      Specific cases should be handled with common sense: If you finish a task while the Pomodoro is still
+      ticking, the following rule applies: If a Pomodoro begins, it has to ring. It’s a good idea to take
+      advantage of the opportunity for overlearning, using the remaining portion of the Pomodoro to review
+      or repeat what you’ve done, make small improvements, and note what you’ve learned until the Pomodoro
       rings.
     </blockquote>
   </div>
 
   <div class="content" [hidden]="helpItem != 3">
     <p>
-      There are many variations on the Pomodoro Technique. These allow individuals to tailor the principles 
+      There are many variations on the Pomodoro Technique. These allow individuals to tailor the principles
       of the Pomodoro Technique to better suit their personal working style.
     </p>
-      <p>Some variations include:</p>
-      <ol>
-        <li>
-          Work in 90 minute time periods. Rather than a 25 minute focus period, work in 90 minute blocks. 
-          This reflects a natural concentration cycle.
-        </li>
-        <li>
-          Work in natural time periods. There may be natural time markers in one's life: for example, the 
-          period between meetings, or the time until one's kids or partner come home, or the time until the 
-          dishwasher finishes. Use these to define focus periods.
-        </li>
-        <li>
-          Monitor periods of naturally high productivity, and from this data work out the best productivity system.
-        </li>
-      </ol>
+    <p>Some variations include:</p>
+    <ol>
+      <li>
+        Work in 90 minute time periods. Rather than a 25 minute focus period, work in 90 minute blocks.
+        This reflects a natural concentration cycle.
+      </li>
+      <li>
+        Work in natural time periods. There may be natural time markers in one's life: for example, the
+        period between meetings, or the time until one's kids or partner come home, or the time until the
+        dishwasher finishes. Use these to define focus periods.
+      </li>
+      <li>
+        Monitor periods of naturally high productivity, and from this data work out the best productivity system.
+      </li>
+    </ol>
   </div>
 
 </ion-content>

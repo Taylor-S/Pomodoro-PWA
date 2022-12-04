@@ -1,6 +1,6 @@
 {
-  "name": "TASCH Pomodoro Timer",
-  "short_name": "TASCH Pomodoro",
+  "name": "Pomodoro Timer",
+  "short_name": "Pomodoro",
   "theme_color": "#76DCFF",
   "background_color": "#FFFFFF",
   "display": "standalone",
