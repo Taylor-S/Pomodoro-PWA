@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { HelpPageRoutingModule } from './help-routing.module';
 
 import { HelpPage } from './help.page';
+import { ModalPage } from './modal/modal.page';
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import { HelpPage } from './help.page';
     IonicModule,
     HelpPageRoutingModule
   ],
-  declarations: [HelpPage]
+  declarations: [HelpPage, ModalPage]
 })
 export class HelpPageModule {}
