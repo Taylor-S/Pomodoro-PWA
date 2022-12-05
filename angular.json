@@ -47,10 +47,7 @@
           "configurations": {
             "production": {
               "outputPath": "docs",
-              "index": {
-                "input": "src/index-prod.html",
-                "output": "index.html"
-              },
+              "baseHref": "/Pomodoro-PWA/",
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
