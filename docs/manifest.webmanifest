@@ -5,8 +5,8 @@
   "background_color": "#FFFFFF",
   "display": "standalone",
   "orientation":"portrait",
-  "scope": "./",
-  "start_url": "./",
+  "scope": "/Pomodoro-PWA/",
+  "start_url": "/Pomodoro-PWA/",
   "icons": [
     {
       "src": "assets/icon/faviconx72.png",
