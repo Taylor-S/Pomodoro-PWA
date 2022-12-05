@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "docs",
+            "outputPath": "www",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -46,6 +46,7 @@
           },
           "configurations": {
             "production": {
+              "outputPath": "docs",
               "index": {
                 "input": "src/index-prod.html",
                 "output": "index.html"

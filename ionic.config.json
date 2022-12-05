@@ -1,5 +1,7 @@
 {
   "name": "tasch-pomodoro",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "angular"
 }
