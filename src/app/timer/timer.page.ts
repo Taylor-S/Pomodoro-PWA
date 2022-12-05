@@ -1,5 +1,6 @@
-import { Component, ComponentFactoryResolver, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SettingsService } from '../services/settings.service';
+import {NativeAudio} from '@capacitor-community/native-audio';
 
 enum State {
   focus = 'Focus Time',
@@ -22,20 +23,39 @@ export class TimerPage implements OnInit {
   timerRunning = false;
   state = State.focus;
   checkMarks = 0;
-  shortBreakSound: HTMLAudioElement;
-  longBreakSound: HTMLAudioElement;
-  workSound: HTMLAudioElement;
+  // shortBreakSound: any;
+  // longBreakSound: any;
+  // workSound: any;
+  audio = NativeAudio;
   started = false;
   loadedDurations = false;
 
   constructor(private settingsService: SettingsService) { }
 
   async ngOnInit() {
+    this.audio.preload({
+      assetId: 'dingDong',
+      assetPath: 'ding-dong.wav',
+      audioChannelNum: 1,
+      isUrl: false
+    });
+    this.audio.preload({
+      assetId: 'longBreak',
+      assetPath: 'longbreak.wav',
+      audioChannelNum: 1,
+      isUrl: false
+    });
+    this.audio.preload({
+      assetId: 'flute',
+      assetPath: 'uplifting-flute.wav',
+      audioChannelNum: 1,
+      isUrl: false
+    });
     await this.setTimes();
     this.loadedDurations = true;
-    this.shortBreakSound = new Audio('./assets/sounds/ding-dong.wav');
-    this.longBreakSound = new Audio('./assets/sounds/longbreak.wav');
-    this.workSound = new Audio('./assets/sounds/uplifting-flute.wav');
+    // this.shortBreakSound = new Audio('./assets/sounds/ding-dong.wav');
+    // this.longBreakSound = new Audio('./assets/sounds/longbreak.wav');
+    // this.workSound = new Audio('./assets/sounds/uplifting-flute.wav');
   }
 
   ionViewWillEnter() {
@@ -143,15 +163,19 @@ export class TimerPage implements OnInit {
   }
 
   private soundAlarm() {
-    if (this.state === State.short) {
-      this.shortBreakSound.play();
+    let uniqueId = 'dingDong'
+
+    if (this.state === State.long) {
+      uniqueId = 'longBreak'
     }
-    else if (this.state === State.long) {
-      this.longBreakSound.play();
+    if (this.state === State.focus) {
+      uniqueId = 'flute'
     }
-    else {
-      this.workSound.play();
-    }
+
+    this.audio.play({
+      assetId: uniqueId,
+      time: 0.0
+    });
   }
 
   private convertToSeconds(time: number) {
